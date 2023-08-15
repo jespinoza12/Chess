@@ -44,6 +44,45 @@ const rookLogic = (rankPieces) => {
   return newArr;
 };
 
+const kingLogic = (rankPieces) => {
+    let rookIndexLocations = [];
+    rankPieces.forEach((v, index) => {
+      if (v === "r") {
+        rookIndexLocations.push(index);
+      }
+    });
+  
+    let kingPosition = getRandomIntRange(
+      rookIndexLocations[0] + 1,
+      rookIndexLocations[1]
+    );
+  
+    rankPieces[kingPosition] = "k";
+    return rankPieces;
+  };
+  
+  const bishopLogic = (rankPieces) => {
+    let emptyOddLocations = [];
+    let emptyEvenLocations = [];
+    rankPieces.forEach((v, index) => {
+      if (v === "p" && index % 2 == 0) {
+        emptyEvenLocations.push(index);
+      }
+      if (v === "p" && index % 2 == 1) {
+        emptyOddLocations.push(index);
+      }
+    });
+  
+    let firstBishop = getRandomInt(emptyOddLocations.length);
+    let secondBishop = getRandomInt(emptyEvenLocations.length);
+    let firstBishopIndex = emptyOddLocations[firstBishop];
+    let secondBishopIndex = emptyEvenLocations[secondBishop];
+    rankPieces[firstBishopIndex] = "b";
+    rankPieces[secondBishopIndex] = "b";
+  
+    return rankPieces;
+  };
+
 
 const restOfPiecesLogic = (rankPieces) => {
     let emptyLocations = [];
@@ -59,3 +98,5 @@ const restOfPiecesLogic = (rankPieces) => {
   
     return rankPieces;
   };
+
+  
