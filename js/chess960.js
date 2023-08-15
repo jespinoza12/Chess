@@ -43,3 +43,19 @@ const rookLogic = (rankPieces) => {
 
   return newArr;
 };
+
+
+const restOfPiecesLogic = (rankPieces) => {
+    let emptyLocations = [];
+    rankPieces.forEach((v, index) => {
+      if (v === "p") {
+        emptyLocations.push(index);
+      }
+    });
+    let shuffledLocations = shuffle(emptyLocations);
+    rankPieces[shuffledLocations[0]] = "q";
+    rankPieces[shuffledLocations[1]] = "n";
+    rankPieces[shuffledLocations[2]] = "n";
+  
+    return rankPieces;
+  };
